@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shiny App</title>
+    <title>Fonctions affines</title>
     <script
       src="./shinylive/load-shinylive-sw.js"
       type="module"
@@ -18,7 +18,27 @@
     </script>
     <link rel="stylesheet" href="./shinylive/style-resets.css" />
     <link rel="stylesheet" href="./shinylive/shinylive.css" />
-    
+    <script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  if (!params.has("_shinylive-mode")) {
+    params.set("_shinylive-mode", "editor-viewer");
+    window.location.replace(
+      window.location.pathname + "?" + params.toString() + window.location.hash
+    );
+  }
+})();
+</script>
+<style>
+  .shinylive-editor, .ResizableGrid--col-sizer, .ResizableGrid--row-sizer {
+    display: none !important;
+  }
+  .shinylive-container.editor-viewer {
+    grid-template-columns: 0 1fr !important;
+    grid-template-rows: 1fr !important;
+  }
+  .shinylive-viewer { width: 100% !important; }
+</style>
   </head>
   <body>
     

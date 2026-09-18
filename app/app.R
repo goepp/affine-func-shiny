@@ -1,5 +1,10 @@
 library(shiny)
 library(ggplot2)
+# munsell is a required (Imports) dependency of scales, used via scales::hue_pal()
+# below. shinylive's dependency scanner misses it unless it's library()'d
+# explicitly here, which would otherwise leave it out of the exported app and
+# make ggplot2 fail to load at runtime with "there is no package called munsell".
+library(munsell)
 
 PALETTE <- scales::hue_pal()(3)
 LINE_COLOR <- PALETTE[1]
